@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('qrgenerate.static', filename='style.css')}}">
+</head>
+<body>
+<div class="header">
+    <h3>{% block heading %} {% endblock %}</h3>
+    <p>{% block message %} {% endblock %}</p>
+</div>
+<hr>
+{% block content %}
+{% endblock %}
+<div class="footer">
+    <footer>
+        <div class="footer-text">
+            <h3>© <span>National Informatics Center</span> - Coimbatore</h3>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

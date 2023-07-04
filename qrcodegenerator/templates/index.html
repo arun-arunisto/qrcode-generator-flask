@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock %}
+{% block heading %} <span>QR</span> Generator {% endblock %}
+{% block content %}
+{% if not data %}
+<div class="form-class">
+    <form method="post">
+        {{ form.hiddentag }}
+        <div class="fields">
+            {{form.link(class="inputs", placeholder="Type/paste link here!")}}
+        </div>
+        <div class="fields">
+            {{form.csrf_token}}
+            {{form.submit(class="button")}}
+        </div>
+    </form>
+</div>
+{% else %}
+<div class="qr-code">
+    <div class="image">
+        {% for i in data %}
+        <h4>{{i.link}}</h4>
+        <img src="{{url_for('qrgenerate.static', filename='images/')}}{{i.filename}}" alt="qr-code">
+        <a href="/download/{{i.filename}}/">Download Image</a>
+        {% endfor %}
+    </div>
+</div>
+<div class="back-button">
+    <a href="{{url_for('qrgenerate.home')}}">Back</a>
+</div>
+{% endif %}
+{% endblock %}
