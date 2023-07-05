@@ -21,7 +21,8 @@
         {% for i in data %}
         <h4>{{i.link}}</h4>
         <img src="{{url_for('qrgenerate.static', filename='images/')}}{{i.filename}}" alt="qr-code">
-        <a href="/download/{{i.filename}}/">Download Image</a>
+        <a href="/download/{{i.filename}}/">Download PNG</a>
+        <a href="/download_pdf/{{i.filename}}/">Download PDF</a>
         {% endfor %}
     </div>
 </div>

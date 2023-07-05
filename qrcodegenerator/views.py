@@ -2,6 +2,7 @@ from flask import Blueprint, flash, render_template, send_from_directory, redire
 from .forms import LinkInput
 import pyqrcode as qr
 import os
+from PIL import Image
 
 def link_purifier(url):
     if url.startswith("https://") or url.startswith("http://"):
@@ -55,3 +56,18 @@ def download(filename):
     except Exception as e:
         print(e)
         return redirect(url_for('qrgenerate.home'))
+
+@qr_bp.route("/download_pdf/<filename>/", methods=["GET", "POST"])
+def download_pdf(filename):
+    try:
+        image_folder = os.path.join(qr_bp.static_folder, "images")
+        pdf_folder = os.path.join(qr_bp.static_folder, "pdf")
+        image_file = Image.open(os.path.join(image_folder, filename))
+        image_convert = image_file.convert('RGB')
+        filename = filename.replace(".png", ".pdf")
+        image_convert.save(os.path.join(pdf_folder, filename))
+        return send_from_directory(pdf_folder, path=filename, as_attachment=True)
+    except Exception as e:
+        print(e)
+        return redirect(url_for('qrgenerate.home'))
+
