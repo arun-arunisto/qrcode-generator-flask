@@ -91,16 +91,19 @@ body {
     color: white;
 }
 
-.footer {
-    margin: 10px auto;
+
+footer .footer {
+    margin-top: 50px;
+    margin-bottom: 10px;
     padding: 20px;
-    text-align: center;
-    bottom: 0;
-    position: fixed;
+    border: solid black 1px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .footer .footer-text {
     padding : 1px;
+    text-align: center;
 }
 
 .footer .footer-text span {

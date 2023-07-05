@@ -17,6 +17,7 @@ def link_purifier(url):
             if end == -1:
                 return url[start:]
             return url[start:][:end]
+    return url
 
 qr_bp = Blueprint("qrgenerate", __name__,
                   template_folder="templates",
